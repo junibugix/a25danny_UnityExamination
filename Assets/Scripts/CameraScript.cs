@@ -24,7 +24,7 @@ public class CameraScript : MonoBehaviour
         {
             cam.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y + 15 * Time.deltaTime, -10);
         }
-        else if (player.transform.position.y < cam.transform.position.y - 3)
+        else if (player.transform.position.y < cam.transform.position.y && cam.transform.position.y > 0)
         {
             cam.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y - 15 * Time.deltaTime, -10);
         }
