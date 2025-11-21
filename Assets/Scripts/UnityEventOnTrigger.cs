@@ -12,6 +12,7 @@ public class UnityEventOnTrigger : MonoBehaviour
     public UnityEvent onTriggerEnter, onTriggerExit;
 
     private bool triggered = false;
+    private float triggerTimer = 0f;
 
     private void Awake()
     {
@@ -19,7 +20,18 @@ public class UnityEventOnTrigger : MonoBehaviour
         {
             Debug.Log($"{gameObject} is missing a collider");
         }
-        
+    }
+
+    private void Update()
+    {
+        if (triggerTimer > 0)
+        {
+            triggerTimer -= Time.deltaTime;
+            if (triggerTimer <= 0)
+            {
+                triggered = false;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -29,8 +41,9 @@ public class UnityEventOnTrigger : MonoBehaviour
             if (!triggered)
             {
                 triggered = true;
+                triggerTimer = 0.5f;
                 onTriggerEnter.Invoke();
-                Debug.Log("Unity Event Trigger (enter) activated on " + gameObject);
+                //Debug.Log("Unity Event Trigger (enter) activated on " + gameObject);
             }
         }
     }
@@ -40,7 +53,7 @@ public class UnityEventOnTrigger : MonoBehaviour
         if (other.CompareTag(tagToActivate))
         {
             onTriggerExit.Invoke();
-            Debug.Log("Unity Event Trigger (exit) activated on " + gameObject);
+            //Debug.Log("Unity Event Trigger (exit) activated on " + gameObject);
         }
     }
 
@@ -49,7 +62,7 @@ public class UnityEventOnTrigger : MonoBehaviour
         if (other.CompareTag(tagToActivate))
         {
             onTriggerEnter.Invoke();
-            Debug.Log("Unity Event Trigger (enter) activated on " + gameObject);
+            //Debug.Log("Unity Event Trigger (enter) activated on " + gameObject);
         }
     }
     
@@ -58,7 +71,7 @@ public class UnityEventOnTrigger : MonoBehaviour
         if (other.CompareTag(tagToActivate))
         {
             onTriggerExit.Invoke();
-            Debug.Log("Unity Event Trigger (exit) activated on " + gameObject);
+            //Debug.Log("Unity Event Trigger (exit) activated on " + gameObject);
         }
     }
 }

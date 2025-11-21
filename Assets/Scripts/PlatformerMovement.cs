@@ -81,17 +81,13 @@ public class PlatformerMovement : MonoBehaviour
         // Flip sprite according to direction (if a sprite renderer has been assigned)
         if (spriteRenderer)
         {
-            print(moveInput.x);
-            
             if (moveInput.x > 0.01f)
             {
-                print("unflip!!");
                 spriteRenderer.flipX = false;
             }
                 
             else if (moveInput.x < -0.01f)
             {
-                print("flip!!");
                 spriteRenderer.flipX = true;
             }
         }
