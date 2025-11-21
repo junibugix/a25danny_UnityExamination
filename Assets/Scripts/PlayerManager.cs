@@ -1,9 +1,12 @@
+using TMPro;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
     private int coins;
     private int health;
+
+    public TextMeshProUGUI coinCountUI;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,6 +25,8 @@ public class PlayerManager : MonoBehaviour
     public void AddCoins(int amount)
     {
         coins += amount;
+
+        coinCountUI.text = "Coins: " + coins;
         
         print("Coins: " + coins + " (+" + amount + ")");
     }
