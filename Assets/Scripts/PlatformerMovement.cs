@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -43,7 +44,7 @@ public class PlatformerMovement : MonoBehaviour
         // Set gravity scale to 0 so player won't "fall" 
         rb.gravityScale = 0;
 
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
     
     void Update()
@@ -80,10 +81,19 @@ public class PlatformerMovement : MonoBehaviour
         // Flip sprite according to direction (if a sprite renderer has been assigned)
         if (spriteRenderer)
         {
+            print(moveInput.x);
+            
             if (moveInput.x > 0.01f)
+            {
+                print("unflip!!");
                 spriteRenderer.flipX = false;
+            }
+                
             else if (moveInput.x < -0.01f)
+            {
+                print("flip!!");
                 spriteRenderer.flipX = true;
+            }
         }
     }
 
@@ -94,6 +104,14 @@ public class PlatformerMovement : MonoBehaviour
         rb.linearVelocity = velocity;
         
         // Write movement animation code here. (Suggestion: send your current velocity into the Animator for both the x- and y-axis.)
+        if (MathF.Abs(velocity.x) > 0.1)
+        {
+            animator.SetBool("running", true);
+        }
+        else
+        {
+            animator.SetBool("running", false);
+        }
     }
 
     private bool IsGrounded()
