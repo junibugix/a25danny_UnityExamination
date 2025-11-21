@@ -21,7 +21,7 @@ public class PlayerManager : MonoBehaviour
         health = 3;
 
         coinCountUI.text = "Coins: " + coins;
-        healthUI.text = "Health " + health;
+        healthUI.text = "Health: " + health;
     }
     
 
